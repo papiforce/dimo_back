@@ -103,8 +103,8 @@ router.post("/send-email", async (req, res) => {
 
     client.send({
       to: {
-        email: "kasomo.emm@gmail.com",
-        name: "UTILISATEUR",
+        email: user.email,
+        name: `Client #${user._id}`,
       },
       from: {
         email: "kasomo.emm@gmail.com",
@@ -150,8 +150,8 @@ router.post("/send-email", async (req, res) => {
 
     client.send({
       to: {
-        email: "kasomo.emm@gmail.com", // req.body.email
-        name: "CLIENT FINAL",
+        email: req.body.email,
+        name: `${req.body.firstname} ${req.body.lastname}`,
       },
       from: {
         email: "kasomo.emm@gmail.com",
