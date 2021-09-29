@@ -4,8 +4,13 @@ const routes = require("./routes/routes");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 
+const dbUri =
+  process.env.NODE_ENV === "production"
+    ? process.env.MONGODB_URI
+    : "mongodb://localhost/dimo_test";
+
 mongoose.connect(
-  "mongodb://localhost/dimo_test",
+  dbUri,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -20,7 +25,7 @@ app.use(cookieParser());
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000"],
+    origin: ["http://localhost:3000", "https://dimo-front.herokuapp.com/"],
   })
 );
 app.use(express.json());
